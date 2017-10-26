@@ -2,8 +2,8 @@
 
 const entries =
   obj =>
-    Object.keys(obj)
-      .map(key => [key, obj[key]])
+  Object.keys(obj)
+  .map(key => [key, obj[key]])
 
 const listing =
   (name, price) => ({
@@ -28,9 +28,14 @@ const cart =
  */
 const itemRepeater =
   itemName =>
-    count => {
-      // TODO
-    }
+  count => {
+    let x = []
+    x.length = count
+    x.fill(itemName)
+    return x.join(', ')
+  }
+
+
 
 /**
  * should return an array of carts with each given customer's shopping list
@@ -38,9 +43,12 @@ const itemRepeater =
  */
 const constructCarts =
   listings =>
-    customers => {
-      // TODO
-    }
+  customers => {
+    return customers.map(customer => ({
+      customer: customer.name,
+      items: [Object.keys(customer.shoppingList).map(item => itemRepeater(item)(customer.shoppingList[item].toString()))].join(", ")
+    }))
+  }
 
 module.exports = {
   listing,
