@@ -32,7 +32,7 @@ const itemRepeater =
     let x = []
     x.length = count
     x.fill(itemName)
-    return x.join(', ')
+    return x
   }
 
 
@@ -46,7 +46,7 @@ const constructCarts =
   customers => {
     return customers.map(customer => ({
       customer: customer.name,
-      items: [Object.keys(customer.shoppingList).map(item => itemRepeater(item)(customer.shoppingList[item].toString()))].join(", ")
+      items: Object.keys(customer.shoppingList).map(item => itemRepeater(item)(customer.shoppingList[item]).map(x => listings.find(y => y.name === x)))
     }))
   }
 
